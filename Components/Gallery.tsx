@@ -4,7 +4,6 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
 const galleryImages = [
-  { src: '/barber-action-shot3.jpeg', alt: 'Sharp fade and clean finish' },
   { src: '/gallery/barber-action-shot5.png', alt: 'Premium fade and precision haircut' },
   { src: '/gallery/barber-action-shot6.png', alt: 'Sharp cut and clean finish' },
   { src: '/gallery/beard-trim.png', alt: 'Beard trim and shaping' },
