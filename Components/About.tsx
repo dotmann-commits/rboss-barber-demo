@@ -25,9 +25,9 @@ export default function About() {
             </div>
             {/* Floating stat badge */}
             <div className="absolute -bottom-4 -right-4 bg-brand-green p-5 hidden md:block">
-              <p className="font-display text-3xl font-700 text-white leading-none">3+</p>
+              <p className="font-display text-3xl font-700 text-white leading-none">5★</p>
               <p className="text-xs text-white/80 tracking-widest uppercase mt-1">
-                {lang === 'en' ? 'Years' : 'Anos'}
+                {lang === 'en' ? 'Rated' : 'Avaliação'}
               </p>
             </div>
           </div>
