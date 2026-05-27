@@ -18,7 +18,7 @@ export default function Footer() {
   const taglineLines = t.tagline.split('\n');
 
   return (
-    <footer className="bg-brand-black border-t border-brand-border">
+    <footer id="contact" className="bg-brand-black border-t border-brand-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-10">
           {/* Brand */}
