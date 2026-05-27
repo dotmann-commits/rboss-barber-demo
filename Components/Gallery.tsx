@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
-import { X, ZoomIn } from 'lucide-react';
+import { useState, useCallback, useEffect } from 'react';
+import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
@@ -14,11 +14,43 @@ const galleryImages = [
   { src: '/services/05_Coloring_Service.png', alt: 'Professional hair coloring' },
 ];
 
+const IMAGES_PER_PAGE = 4;
+const TOTAL_PAGES = Math.ceil(galleryImages.length / IMAGES_PER_PAGE);
+
 export default function Gallery() {
   const { lang } = useLanguage();
   const t = translations[lang].gallery;
 
+  const [page, setPage] = useState(0);
+  const [fading, setFading] = useState(false);
   const [lightbox, setLightbox] = useState<string | null>(null);
+
+  const changePage = useCallback((getNext: (p: number) => number) => {
+    setFading(true);
+    setTimeout(() => {
+      setPage(getNext);
+      setFading(false);
+    }, 250);
+  }, []);
+
+  const nextPage = useCallback(() => {
+    changePage((p) => (p + 1) % TOTAL_PAGES);
+  }, [changePage]);
+
+  const prevPage = useCallback(() => {
+    changePage((p) => (p - 1 + TOTAL_PAGES) % TOTAL_PAGES);
+  }, [changePage]);
+
+  // Auto-rotate every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(nextPage, 5000);
+    return () => clearInterval(timer);
+  }, [nextPage]);
+
+  const visibleImages = galleryImages.slice(
+    page * IMAGES_PER_PAGE,
+    (page + 1) * IMAGES_PER_PAGE
+  );
 
   const openLightbox = useCallback((src: string) => setLightbox(src), []);
   const closeLightbox = useCallback(() => setLightbox(null), []);
@@ -28,34 +60,79 @@ export default function Gallery() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="mb-12">
           <p className="section-label mb-2">{t.sectionLabel}</p>
-          <h2 className="font-display text-3xl md:text-4xl font-700 text-brand-white">{t.sectionTitle}</h2>
+          <h2 className="font-display text-3xl md:text-4xl font-700 text-brand-white">
+            {t.sectionTitle}
+          </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
-          {galleryImages.map(({ src, alt }) => (
-            <button
-              key={src}
-              onClick={() => openLightbox(src)}
-              className="relative overflow-hidden aspect-[3/4] group focus:outline-none"
-              aria-label={`View: ${alt}`}
-            >
-              <img
-                src={src}
-                alt={alt}
-                loading="lazy"
-                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                <ZoomIn
-                  size={24}
-                  className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        {/* Carousel wrapper */}
+        <div className="relative px-8 md:px-10">
+          {/* 4-image grid */}
+          <div
+            className={`grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 transition-opacity duration-300 ${
+              fading ? 'opacity-0' : 'opacity-100'
+            }`}
+          >
+            {visibleImages.map(({ src, alt }) => (
+              <button
+                key={src}
+                onClick={() => openLightbox(src)}
+                className="relative overflow-hidden aspect-[3/4] group focus:outline-none"
+                aria-label={`View: ${alt}`}
+              >
+                <img
+                  src={src}
+                  alt={alt}
+                  loading="lazy"
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
-              </div>
-            </button>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                  <ZoomIn
+                    size={24}
+                    className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Prev arrow */}
+          <button
+            onClick={prevPage}
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-brand-black/80 hover:bg-brand-black border border-brand-border text-white p-2 rounded-full transition-all duration-200 hover:scale-110 hover:border-brand-green-light"
+            aria-label="Previous images"
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          {/* Next arrow */}
+          <button
+            onClick={nextPage}
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-brand-black/80 hover:bg-brand-black border border-brand-border text-white p-2 rounded-full transition-all duration-200 hover:scale-110 hover:border-brand-green-light"
+            aria-label="Next images"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
+
+        {/* Page dot indicators */}
+        <div className="flex justify-center gap-2 mt-6">
+          {Array.from({ length: TOTAL_PAGES }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => changePage(() => i)}
+              className={`h-1 rounded-full transition-all duration-300 ${
+                i === page
+                  ? 'w-6 bg-brand-green-light'
+                  : 'w-2 bg-white/30 hover:bg-white/50'
+              }`}
+              aria-label={`Go to page ${i + 1}`}
+            />
           ))}
         </div>
       </div>
 
+      {/* Lightbox */}
       {lightbox && (
         <div
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 animate-fade-in"
