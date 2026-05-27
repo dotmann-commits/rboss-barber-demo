@@ -8,6 +8,11 @@ const galleryImages = [
   { src: '/0037528D-212E-43E1-ABA5-C22A2E6945AF.png', alt: 'Fresh cut' },
   { src: '/B6CADB6B-54E8-4700-888D-B8B0B1279020.jpeg', alt: 'Sharp style' },
   { src: '/F6C88B3B-89E9-45DC-871E-61E61B876814.png', alt: 'Precision grooming' },
+  { src: '/gallery/barber-action-shot5.png', alt: 'Premium fade' },
+  { src: '/gallery/barber-action-shot6.png', alt: 'Clean cut finish' },
+  { src: '/gallery/beard-trim.png', alt: 'Beard trim and shaping' },
+  { src: '/gallery/full-haircut.png', alt: 'Full haircut result' },
+  { src: '/gallery/kids-haircut.png', alt: 'Kids haircut' },
 ];
 
 const IMAGES_PER_PAGE = 4;
