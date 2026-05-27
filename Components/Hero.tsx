@@ -5,10 +5,7 @@ import { translations } from '../translations';
 
 const BASE_HERO_IMAGES: { src: string; position: string }[] = [
   { src: '/barber-action-shot.jpeg', position: 'center' },
-  { src: '/barber-action-shot1.jpeg', position: 'top' },
-  { src: '/barber-action-shot2.jpeg', position: 'center' },
   { src: '/services/01_Shape_Up.png', position: 'center' },
-  { src: '/services/02_Hair_Treatment.png', position: 'center' },
 ];
 
 function shuffle<T>(arr: T[]): T[] {
