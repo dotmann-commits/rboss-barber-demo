@@ -10,6 +10,7 @@ const serviceKeys = [
   'Kids Haircut',
   'Hair Treatment',
   'Beard Trim',
+  'Coloring',
   'Premium Service',
 ];
 

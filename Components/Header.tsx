@@ -11,8 +11,9 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: t.services, href: '#services' },
+    { label: t.home, href: '#' },
     { label: t.gallery, href: '#gallery' },
+    { label: t.services, href: '#services' },
     { label: t.about, href: '#about' },
     { label: t.contact, href: '#contact' },
   ];

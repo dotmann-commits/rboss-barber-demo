@@ -7,6 +7,7 @@ const serviceImages: Record<string, string> = {
   'Kids Haircut': '/services/kids-haircut.png',
   'Hair Treatment': '/services/02_Hair_Treatment.png',
   'Beard Trim': '/services/beard-trim.png',
+  'Coloring': '/services/05_Coloring_Service.png',
   'Premium Service': '/services/premium-service.png',
 };
 

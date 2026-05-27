@@ -10,6 +10,11 @@ const galleryImages = [
   { src: '/barber-action-shot2.jpeg', alt: 'Precision haircut in progress' },
   { src: '/barber-action-shot3.jpeg', alt: 'Sharp fade and clean finish' },
   { src: '/owner-photo.jpeg', alt: 'RBOSS BARBER — master barber' },
+  { src: '/gallery/barber-action-shot5.png', alt: 'Premium fade and precision haircut' },
+  { src: '/gallery/barber-action-shot6.png', alt: 'Sharp cut and clean finish' },
+  { src: '/gallery/beard-trim.png', alt: 'Beard trim and shaping' },
+  { src: '/gallery/kids-haircut.png', alt: 'Kids haircut — careful and clean' },
+  { src: '/gallery/premium-service.png', alt: 'Premium grooming service' },
 ];
 
 export default function Gallery() {

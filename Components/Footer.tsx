@@ -8,8 +8,9 @@ export default function Footer() {
   const nav = translations[lang].nav;
 
   const navLinks = [
-    { label: nav.services, href: '#services' },
+    { label: nav.home, href: '#' },
     { label: nav.gallery, href: '#gallery' },
+    { label: nav.services, href: '#services' },
     { label: nav.about, href: '#about' },
     { label: lang === 'en' ? 'Book' : 'Reservar', href: '#booking' },
   ];

@@ -3,6 +3,7 @@ export type Lang = 'en' | 'pt';
 export const translations = {
   en: {
     nav: {
+      home: 'Home',
       services: 'Services',
       gallery: 'Gallery',
       about: 'About',
@@ -40,6 +41,7 @@ export const translations = {
         { key: 'Kids Haircut', title: 'Kids Haircut', price: '€15', description: 'Patient, careful cuts tailored for the younger clients.' },
         { key: 'Hair Treatment', title: 'Hair Treatment', price: '€25', description: 'Scalp and hair care treatment to keep your hair healthy.' },
         { key: 'Beard Trim', title: 'Beard Trim', price: '€10', description: 'Sharp beard shaping, clean lines, and a polished finish.' },
+        { key: 'Coloring', title: 'Coloring', price: '€45', description: 'Professional hair coloring — vibrant results with expert technique.' },
         { key: 'Premium Service', title: 'Premium Service', price: 'Contact Us', description: 'Home service, wedding cuts, and custom grooming requests.' },
       ],
     },
@@ -58,7 +60,7 @@ export const translations = {
       stat2Label: 'Happy Clients',
       stat2Value: '1,000+',
       stat3Label: 'Services',
-      stat3Value: '6',
+      stat3Value: '7',
       bookBtn: 'BOOK APPOINTMENT',
     },
     booking: {
@@ -104,6 +106,7 @@ export const translations = {
   },
   pt: {
     nav: {
+      home: 'Início',
       services: 'Serviços',
       gallery: 'Galeria',
       about: 'Sobre',
@@ -141,6 +144,7 @@ export const translations = {
         { key: 'Kids Haircut', title: 'Corte Infantil', price: '€15', description: 'Cortes cuidadosos e pacientes adaptados para os clientes mais novos.' },
         { key: 'Hair Treatment', title: 'Tratamento Capilar', price: '€25', description: 'Tratamento de couro cabeludo e cabelo para manter a saúde capilar.' },
         { key: 'Beard Trim', title: 'Aparar Barba', price: '€10', description: 'Modelagem de barba com acabamento preciso e definido.' },
+        { key: 'Coloring', title: 'Coloração', price: '€45', description: 'Coloração profissional de cabelo — resultados vibrantes com técnica especializada.' },
         { key: 'Premium Service', title: 'Serviço Premium', price: 'Contacte-nos', description: 'Serviço ao domicílio, cortes para casamentos e pedidos personalizados.' },
       ],
     },
@@ -159,7 +163,7 @@ export const translations = {
       stat2Label: 'Clientes Satisfeitos',
       stat2Value: '1.000+',
       stat3Label: 'Serviços',
-      stat3Value: '6',
+      stat3Value: '7',
       bookBtn: 'RESERVAR CONSULTA',
     },
     booking: {
