@@ -6,10 +6,8 @@ import { translations } from '../translations';
 const galleryImages = [
   { src: '/barber-action-shot.jpeg', alt: 'Barber at work — precision cut in progress' },
   { src: '/barber-action-shot1.jpeg', alt: 'Client cut result — clean fade and beard' },
-  { src: '/white-guy-fade.png', alt: 'Premium fade — clean finish on different hair textures' },
   { src: '/barber-action-shot2.jpeg', alt: 'Precision haircut in progress' },
   { src: '/barber-action-shot3.jpeg', alt: 'Sharp fade and clean finish' },
-  { src: '/owner-photo.jpeg', alt: 'RBOSS BARBER — master barber' },
   { src: '/gallery/barber-action-shot5.png', alt: 'Premium fade and precision haircut' },
   { src: '/gallery/barber-action-shot6.png', alt: 'Sharp cut and clean finish' },
   { src: '/gallery/beard-trim.png', alt: 'Beard trim and shaping' },
