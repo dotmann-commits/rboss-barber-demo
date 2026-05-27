@@ -3,15 +3,15 @@ import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
-const BASE_HERO_IMAGES = [
-  '/barber-action-shot.jpeg',
-  '/barber-action-shot1.jpeg',
-  '/barber-action-shot2.jpeg',
-  '/services/01_Shape_Up.png',
-  '/services/02_Hair_Treatment.png',
+const BASE_HERO_IMAGES: { src: string; position: string }[] = [
+  { src: '/barber-action-shot.jpeg', position: 'center' },
+  { src: '/barber-action-shot1.jpeg', position: 'top' },
+  { src: '/barber-action-shot2.jpeg', position: 'center' },
+  { src: '/services/01_Shape_Up.png', position: 'center' },
+  { src: '/services/02_Hair_Treatment.png', position: 'center' },
 ];
 
-function shuffle(arr: string[]): string[] {
+function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -24,7 +24,7 @@ export default function Hero() {
   const { lang } = useLanguage();
   const t = translations[lang].hero;
 
-  const [heroImages] = useState(() => shuffle(BASE_HERO_IMAGES));
+  const [heroImages] = useState<{ src: string; position: string }[]>(() => shuffle(BASE_HERO_IMAGES));
   const [current, setCurrent] = useState(0);
   const [fading, setFading] = useState(false);
 
@@ -49,7 +49,7 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen min-h-[600px] max-h-[900px] overflow-hidden">
-      {heroImages.map((src, i) => (
+      {heroImages.map(({ src, position }, i) => (
         <div
           key={src}
           className="absolute inset-0 transition-opacity duration-700 ease-in-out"
@@ -58,7 +58,8 @@ export default function Hero() {
           <img
             src={src}
             alt=""
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: position }}
             loading={i === 0 ? 'eager' : 'lazy'}
           />
         </div>
