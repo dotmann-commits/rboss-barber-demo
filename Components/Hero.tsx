@@ -4,8 +4,11 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
 const heroImages = [
-  '/barber-action-shot.png',
+  '/barber-action-shot.jpeg',
   '/barber-action-shot1.jpeg',
+  '/white-guy-fade.png',
+  '/barber-action-shot2.jpeg',
+  '/barber-action-shot3.jpeg',
 ];
 
 export default function Hero() {

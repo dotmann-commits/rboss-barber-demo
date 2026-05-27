@@ -23,7 +23,7 @@ export default function ContactStrip() {
       icon: MapPin,
       label: t.location,
       value: t.locationValue,
-      href: 'https://maps.google.com/?q=Rua+de+Costa+Cabral+279+Porto+Portugal',
+      href: 'https://maps.google.com/?q=Rua+de+Costa+Cabral+279+1+B,+4200-222+Porto,+Portugal',
     },
     {
       icon: Clock,

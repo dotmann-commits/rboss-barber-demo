@@ -83,15 +83,15 @@ export default function Footer() {
               {/* Address → Google Maps */}
               <li>
                 <a
-                  href="https://maps.google.com/?q=Rua+de+Costa+Cabral+279+Porto+Portugal"
+                  href="https://maps.google.com/?q=Rua+de+Costa+Cabral+279+1+B,+4200-222+Porto,+Portugal"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-2.5 text-sm text-brand-gray-light hover:text-white transition-colors"
                 >
                   <MapPin size={13} className="text-brand-green-light flex-shrink-0 mt-0.5" />
                   <span>
-                    Rua de Costa Cabral 279,<br />
-                    2° Andar, Porto, Portugal
+                    Rua de Costa Cabral 279 1 B,<br />
+                    4200-222 Porto, Portugal
                   </span>
                 </a>
               </li>

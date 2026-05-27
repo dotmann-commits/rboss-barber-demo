@@ -4,8 +4,9 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
 const galleryImages = [
-  { src: '/barber-action-shot.png', alt: 'Barber at work — precision cut in progress' },
+  { src: '/barber-action-shot.jpeg', alt: 'Barber at work — precision cut in progress' },
   { src: '/barber-action-shot1.jpeg', alt: 'Client cut result — clean fade and beard' },
+  { src: '/white-guy-fade.png', alt: 'Premium fade — clean finish on different hair textures' },
   { src: '/barber-action-shot2.jpeg', alt: 'Precision haircut in progress' },
   { src: '/barber-action-shot3.jpeg', alt: 'Sharp fade and clean finish' },
   { src: '/owner-photo.jpeg', alt: 'RBOSS BARBER — master barber' },

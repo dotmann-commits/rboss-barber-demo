@@ -1,8 +1,14 @@
-import { Scissors, User, Sparkles, Smile, Star, Crown, Gem } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
-const icons = [Scissors, User, Star, Sparkles, Smile, Crown, Gem];
+const serviceImages: Record<string, string> = {
+  'Full Haircut': '/services/full-haircut.png',
+  'Haircut + Beard': '/barber-action-shot1.jpeg',
+  'Kids Haircut': '/services/kids-haircut.png',
+  'Hair Treatment': '/services/02_Hair_Treatment.png',
+  'Beard Trim': '/services/beard-trim.png',
+  'Premium Service': '/services/premium-service.png',
+};
 
 interface ServicesProps {
   onSelectService: (serviceKey: string) => void;
@@ -19,56 +25,56 @@ export default function Services({ onSelectService }: ServicesProps) {
     }, 50);
   };
 
-  const handleConsultation = () => {
-    onSelectService('');
-    setTimeout(() => {
-      document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
-  };
-
   return (
     <section id="services" className="bg-brand-black py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="mb-12">
+        <div className="mb-12 text-center md:text-left">
           <p className="section-label mb-2">{t.sectionLabel}</p>
-          <h2 className="font-display text-3xl md:text-4xl font-700 text-brand-white">{t.sectionTitle}</h2>
+          <h2 className="font-display text-3xl md:text-4xl font-700 text-brand-white">
+            {t.sectionTitle}
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm text-brand-gray">
+            {lang === 'en'
+              ? 'Premium barbering services designed for clean style, confidence, and a professional finish.'
+              : 'Serviços de barbearia premium pensados para estilo, confiança e um acabamento profissional.'}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-brand-border">
-          {t.items.map(({ key, title, price, description }, idx) => {
-            const Icon = icons[idx] ?? Scissors;
-            return (
-              <div
-                key={key}
-                className="bg-brand-card p-6 group flex flex-col gap-4 hover:bg-brand-dark transition-colors duration-200"
-              >
-                <div className="flex items-start justify-between">
-                  <div className="w-9 h-9 rounded-full bg-brand-green/10 flex items-center justify-center group-hover:bg-brand-green/20 transition-colors">
-                    <Icon size={16} className="text-brand-green-light" />
-                  </div>
-                  <span className="font-display text-xl font-700 text-brand-green-light">{price}</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {t.items.map((service) => (
+            <article
+              key={service.key}
+              className="group overflow-hidden rounded-2xl border border-brand-border bg-brand-card shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-brand-green/40"
+            >
+              <div className="relative h-56 overflow-hidden bg-brand-dark">
+                <img
+                  src={serviceImages[service.key]}
+                  alt={service.title}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/30 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
+                  <h3 className="font-display text-xl font-700 text-white">{service.title}</h3>
+                  <span className="rounded-full bg-brand-green px-4 py-2 text-sm font-700 text-white">
+                    {service.price}
+                  </span>
                 </div>
-                <div>
-                  <h3 className="font-display text-lg font-700 text-brand-white mb-1">{title}</h3>
-                  <p className="text-sm text-brand-gray leading-relaxed">{description}</p>
-                </div>
+              </div>
+
+              <div className="p-6">
+                <p className="min-h-[48px] text-sm leading-relaxed text-brand-gray">
+                  {service.description}
+                </p>
                 <button
-                  onClick={() => handleBook(key)}
-                  className="mt-auto text-xs text-brand-green-light hover:text-white tracking-widest uppercase transition-colors flex items-center gap-1 group"
+                  onClick={() => handleBook(service.key)}
+                  className="mt-6 w-full rounded-full border border-brand-green/40 px-5 py-3 text-xs font-700 uppercase tracking-widest text-brand-green-light transition hover:bg-brand-green hover:text-white"
                 >
                   {t.book}
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
                 </button>
               </div>
-            );
-          })}
-
-          <div className="bg-brand-green/10 border border-brand-green/20 p-6 flex flex-col justify-center items-center text-center gap-3 col-span-1">
-            <p className="text-brand-gray-light text-sm">{t.consultation}</p>
-            <button onClick={handleConsultation} className="btn-primary text-xs tracking-widest w-full">
-              {t.consultationBtn}
-            </button>
-          </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

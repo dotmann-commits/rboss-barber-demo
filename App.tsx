@@ -22,10 +22,10 @@ function App() {
         <Header />
         <Hero />
         <ContactStrip />
-        <Services onSelectService={handleSelectService} />
         <Gallery />
-        <About />
+        <Services onSelectService={handleSelectService} />
         <Booking selectedService={selectedService} />
+        <About />
         <Footer />
       </div>
     </LanguageProvider>

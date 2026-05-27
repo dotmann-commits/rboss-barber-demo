@@ -5,13 +5,12 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
 const serviceKeys = [
-  'Beard Trim',
-  'Kids Haircut',
-  'Shape Up',
-  'Hair Treatment',
   'Full Haircut',
   'Haircut + Beard',
-  'Premium Grooming',
+  'Kids Haircut',
+  'Hair Treatment',
+  'Beard Trim',
+  'Premium Service',
 ];
 
 const timeSlots = [
@@ -84,6 +83,12 @@ export default function Booking({ selectedService }: BookingProps) {
       message: form.message.trim(),
     };
 
+    if (!supabase) {
+      setStatus('error');
+      setErrorMsg(t.errorMsg);
+      return;
+    }
+
     const { error } = await supabase.from('appointments').insert(appointment);
 
     if (error) {
@@ -110,8 +115,11 @@ export default function Booking({ selectedService }: BookingProps) {
                 <span key={i}>{line}{i === 0 && <br />}</span>
               ))}
             </h2>
-            <p className="text-brand-gray text-sm leading-relaxed mb-8">
+            <p className="text-brand-gray text-sm leading-relaxed mb-4">
               {t.subtitle}
+            </p>
+            <p className="text-brand-green-light text-xs tracking-wide mb-8">
+              ⏱ {t.durationNote}
             </p>
 
             <div className="space-y-4 border-t border-brand-border pt-6">
