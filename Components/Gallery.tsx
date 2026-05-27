@@ -13,6 +13,8 @@ const galleryImages = [
   { src: '/gallery/barber-action-shot6.png', alt: 'Clean cut finish' },
   { src: '/gallery/beard-trim.png', alt: 'Beard trim and shaping' },
   { src: '/gallery/kids-haircut.png', alt: 'Kids haircut' },
+  { src: '/gallery/rboss-action-1.png', alt: 'RBOSS in action' },
+  { src: '/gallery/rboss-action-2.png', alt: 'RBOSS signature cut' },
 ];
 
 const IMAGES_PER_PAGE = 4;

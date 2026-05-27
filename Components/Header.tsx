@@ -42,7 +42,7 @@ export default function Header() {
           <img
             src="/rboss-logo.jpeg"
             alt="RBOSS BARBER"
-            className="h-10 w-10 rounded-full object-cover"
+            className="h-14 w-14 rounded-full object-cover ring-2 ring-white/10"
           />
         </a>
 

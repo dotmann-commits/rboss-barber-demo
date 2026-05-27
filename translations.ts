@@ -12,7 +12,7 @@ export const translations = {
       bookAppointment: 'BOOK APPOINTMENT',
     },
     hero: {
-      tagline: 'RBOSS BARBER · Since 2022',
+      tagline: 'RBOSS BARBER · Porto\'s Finest',
       headline1: 'Fresh Cuts.',
       headline2: 'Clean Style.',
       headline3: 'Boss-Level',
@@ -115,7 +115,7 @@ export const translations = {
       bookAppointment: 'RESERVAR',
     },
     hero: {
-      tagline: 'RBOSS BARBER · Desde 2022',
+      tagline: 'RBOSS BARBER · O Melhor do Porto',
       headline1: 'Cortes Frescos.',
       headline2: 'Estilo Limpo.',
       headline3: 'Grooming',

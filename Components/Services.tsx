@@ -3,7 +3,7 @@ import { translations } from '../translations';
 
 const serviceImages: Record<string, string> = {
   'Full Haircut': '/services/full-haircut.png',
-  'Haircut + Beard': '/barber-action-shot1.jpeg',
+  'Haircut + Beard': '/services/beard-haircut.png',
   'Kids Haircut': '/services/kids-haircut.png',
   'Hair Treatment': '/services/02_Hair_Treatment.png',
   'Beard Trim': '/services/beard-trim.png',
