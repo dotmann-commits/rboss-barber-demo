@@ -58,7 +58,7 @@ export const translations = {
       stat2Label: 'Happy Clients',
       stat2Value: '1,000+',
       stat3Label: 'Services',
-      stat3Value: '7',
+      stat3Value: '6',
       bookBtn: 'BOOK APPOINTMENT',
     },
     booking: {
@@ -159,7 +159,7 @@ export const translations = {
       stat2Label: 'Clientes Satisfeitos',
       stat2Value: '1.000+',
       stat3Label: 'Serviços',
-      stat3Value: '7',
+      stat3Value: '6',
       bookBtn: 'RESERVAR CONSULTA',
     },
     booking: {

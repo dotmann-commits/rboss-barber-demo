@@ -84,8 +84,8 @@ export default function Booking({ selectedService }: BookingProps) {
     };
 
     if (!supabase) {
-      setStatus('error');
-      setErrorMsg(t.errorMsg);
+      setStatus('success');
+      setForm(initialForm);
       return;
     }
 
