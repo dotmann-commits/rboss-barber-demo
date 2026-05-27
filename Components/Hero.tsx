@@ -3,21 +3,28 @@ import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
-const heroImages = [
+const BASE_HERO_IMAGES = [
   '/barber-action-shot.jpeg',
   '/barber-action-shot1.jpeg',
   '/barber-action-shot2.jpeg',
   '/services/01_Shape_Up.png',
   '/services/02_Hair_Treatment.png',
-  '/services/03_Barber_In_Action.png',
-  '/services/04_Full_Haircut.png',
-  '/services/05_Coloring_Service.png',
 ];
+
+function shuffle(arr: string[]): string[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 export default function Hero() {
   const { lang } = useLanguage();
   const t = translations[lang].hero;
 
+  const [heroImages] = useState(() => shuffle(BASE_HERO_IMAGES));
   const [current, setCurrent] = useState(0);
   const [fading, setFading] = useState(false);
 
@@ -30,7 +37,7 @@ export default function Hero() {
       }, 600);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [heroImages.length]);
 
   const handleBook = () => {
     document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
