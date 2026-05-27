@@ -1,6 +1,6 @@
 import { useState, useEffect, type FormEvent } from 'react';
 import { CheckCircle, AlertCircle } from 'lucide-react';
-import { supabase, type Appointment } from '../lib/supabase';
+import { submitAppointment, type Appointment } from '../lib/n8n';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
@@ -83,20 +83,13 @@ export default function Booking({ selectedService }: BookingProps) {
       message: form.message.trim(),
     };
 
-    if (!supabase) {
+    try {
+      await submitAppointment(appointment);
       setStatus('success');
       setForm(initialForm);
-      return;
-    }
-
-    const { error } = await supabase.from('appointments').insert(appointment);
-
-    if (error) {
+    } catch {
       setStatus('error');
       setErrorMsg(t.errorMsg);
-    } else {
-      setStatus('success');
-      setForm(initialForm);
     }
   };
 
@@ -173,8 +166,9 @@ export default function Booking({ selectedService }: BookingProps) {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.nameLabel} *</label>
+                    <label htmlFor="booking-name" className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.nameLabel} *</label>
                     <input
+                      id="booking-name"
                       type="text"
                       name="name"
                       required
@@ -185,8 +179,9 @@ export default function Booking({ selectedService }: BookingProps) {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.phoneFLabel} *</label>
+                    <label htmlFor="booking-phone" className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.phoneFLabel} *</label>
                     <input
+                      id="booking-phone"
                       type="tel"
                       name="phone"
                       required
@@ -199,8 +194,9 @@ export default function Booking({ selectedService }: BookingProps) {
                 </div>
 
                 <div>
-                  <label className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.emailLabel} *</label>
+                  <label htmlFor="booking-email" className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.emailLabel} *</label>
                   <input
+                    id="booking-email"
                     type="email"
                     name="email"
                     required
@@ -213,8 +209,9 @@ export default function Booking({ selectedService }: BookingProps) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.dateLabel} *</label>
+                    <label htmlFor="booking-date" className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.dateLabel} *</label>
                     <input
+                      id="booking-date"
                       type="date"
                       name="appointment_date"
                       required
@@ -225,8 +222,9 @@ export default function Booking({ selectedService }: BookingProps) {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.timeLabel} *</label>
+                    <label htmlFor="booking-time" className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.timeLabel} *</label>
                     <select
+                      id="booking-time"
                       name="appointment_time"
                       required
                       value={form.appointment_time}
@@ -242,8 +240,9 @@ export default function Booking({ selectedService }: BookingProps) {
                 </div>
 
                 <div>
-                  <label className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.serviceLabel} *</label>
+                  <label htmlFor="booking-service" className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.serviceLabel} *</label>
                   <select
+                    id="booking-service"
                     name="service"
                     required
                     value={form.service}
@@ -260,8 +259,9 @@ export default function Booking({ selectedService }: BookingProps) {
                 </div>
 
                 <div>
-                  <label className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.messageLabel}</label>
+                  <label htmlFor="booking-message" className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.messageLabel}</label>
                   <textarea
+                    id="booking-message"
                     name="message"
                     rows={3}
                     value={form.message}
