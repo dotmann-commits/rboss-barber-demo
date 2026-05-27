@@ -7,6 +7,11 @@ const heroImages = [
   '/barber-action-shot.jpeg',
   '/barber-action-shot1.jpeg',
   '/barber-action-shot2.jpeg',
+  '/services/01_Shape_Up.png',
+  '/services/02_Hair_Treatment.png',
+  '/services/03_Barber_In_Action.png',
+  '/services/04_Full_Haircut.png',
+  '/services/05_Coloring_Service.png',
 ];
 
 export default function Hero() {

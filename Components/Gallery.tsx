@@ -13,6 +13,11 @@ const galleryImages = [
   { src: '/gallery/beard-trim.png', alt: 'Beard trim and shaping' },
   { src: '/gallery/kids-haircut.png', alt: 'Kids haircut — careful and clean' },
   { src: '/gallery/premium-service.png', alt: 'Premium grooming service' },
+  { src: '/services/01_Shape_Up.png', alt: 'Shape up and taper fade' },
+  { src: '/services/02_Hair_Treatment.png', alt: 'Hair treatment result' },
+  { src: '/services/03_Barber_In_Action.png', alt: 'Precision cut in action' },
+  { src: '/services/04_Full_Haircut.png', alt: 'Full haircut result' },
+  { src: '/services/05_Coloring_Service.png', alt: 'Professional hair coloring' },
 ];
 
 export default function Gallery() {
