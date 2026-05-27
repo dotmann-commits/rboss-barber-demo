@@ -42,9 +42,9 @@ export default function Gallery() {
     changePage((p) => (p - 1 + TOTAL_PAGES) % TOTAL_PAGES);
   }, [changePage]);
 
-  // Auto-rotate every 5 seconds
+  // Auto-rotate every 6 seconds
   useEffect(() => {
-    const timer = setInterval(nextPage, 5000);
+    const timer = setInterval(nextPage, 6000);
     return () => clearInterval(timer);
   }, [nextPage]);
 
