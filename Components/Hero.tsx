@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
 const BASE_HERO_IMAGES: { src: string; position: string }[] = [
-  { src: '/barber-action-shot.jpeg', position: 'center' },
+  { src: '/gallery/full-haircut.png', position: 'center' },
   { src: '/0037528D-212E-43E1-ABA5-C22A2E6945AF.png', position: 'center' },
   { src: '/hero-shot-1.png', position: 'center' },
   { src: '/hero-shot-2.png', position: 'center' },
