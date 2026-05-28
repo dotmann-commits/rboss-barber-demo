@@ -52,6 +52,7 @@ export default function Booking({ selectedService }: BookingProps) {
   const [form, setForm] = useState<FormState>(initialForm);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [bookedSlots, setBookedSlots] = useState<string[]>([]);
 
   const today = new Date().toISOString().split('T')[0];
 
@@ -61,6 +62,20 @@ export default function Booking({ selectedService }: BookingProps) {
       setForm((prev) => ({ ...prev, service: selectedService }));
     }
   }, [selectedService]);
+
+  // Fetch booked slots whenever date changes
+  useEffect(() => {
+    setForm((prev) => ({ ...prev, appointment_time: '' }));
+    setBookedSlots([]);
+    if (!form.appointment_date) return;
+    const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL as string | undefined;
+    if (!webhookUrl) return;
+    const availUrl = webhookUrl.replace('rboss-booking', 'rboss-availability');
+    fetch(`${availUrl}?date=${form.appointment_date}`)
+      .then((r) => r.json())
+      .then((data) => setBookedSlots(data.booked ?? []))
+      .catch(() => setBookedSlots([]));
+  }, [form.appointment_date]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -263,18 +278,33 @@ export default function Booking({ selectedService }: BookingProps) {
                   </div>
                   <div>
                     <label className="block text-xs text-brand-gray uppercase tracking-widest mb-1.5">{t.timeLabel} *</label>
-                    <select
-                      name="appointment_time"
-                      required
-                      value={form.appointment_time}
-                      onChange={handleChange}
-                      className={inputClass}
-                    >
-                      <option value="">{t.selectTime}</option>
-                      {timeSlots.map((slot) => (
-                        <option key={slot} value={slot}>{slot}</option>
-                      ))}
-                    </select>
+                    {!form.appointment_date ? (
+                      <p className="text-xs text-brand-gray/50 italic pt-2">{t.selectDateFirst}</p>
+                    ) : (
+                      <div className="grid grid-cols-3 gap-1.5 pt-1">
+                        {timeSlots.map((slot) => {
+                          const booked = bookedSlots.includes(slot);
+                          const selected = form.appointment_time === slot;
+                          return (
+                            <button
+                              key={slot}
+                              type="button"
+                              disabled={booked}
+                              onClick={() => !booked && setForm((prev) => ({ ...prev, appointment_time: slot }))}
+                              className={`py-2 text-xs font-medium tracking-wide border transition-all duration-150 ${
+                                booked
+                                  ? 'bg-transparent border-brand-border/20 text-brand-gray/25 cursor-not-allowed line-through'
+                                  : selected
+                                  ? 'bg-brand-green border-brand-green text-white'
+                                  : 'bg-brand-dark border-brand-border text-brand-white hover:border-brand-green-light hover:text-brand-green-light cursor-pointer'
+                              }`}
+                            >
+                              {slot}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 </div>
 
