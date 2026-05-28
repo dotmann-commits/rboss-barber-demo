@@ -73,21 +73,58 @@ export default function Booking({ selectedService }: BookingProps) {
     setStatus('loading');
     setErrorMsg('');
 
-    const appointment: Appointment = {
+    const payload = {
       name: form.name.trim(),
       phone: form.phone.trim(),
       email: form.email.trim(),
-      appointment_date: form.appointment_date,
-      appointment_time: form.appointment_time,
       service: form.service,
+      date: form.appointment_date,
+      time: form.appointment_time,
       message: form.message.trim(),
+      lang,
     };
 
+    // n8n webhook — primary path
+    const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL as string | undefined;
+    if (webhookUrl) {
+      try {
+        const res = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (res.status === 409) {
+          // Slot already taken — show specific message, stay on form
+          setStatus('error');
+          setErrorMsg(t.slotTakenMsg);
+          return;
+        }
+        if (!res.ok) throw new Error(`Webhook responded ${res.status}`);
+        setStatus('success');
+        setForm(initialForm);
+        return;
+      } catch (err) {
+        console.error('[n8n webhook]', err);
+        // fall through to Supabase / demo
+      }
+    }
+
+    // Supabase fallback / demo mode
     if (!supabase) {
       setStatus('success');
       setForm(initialForm);
       return;
     }
+
+    const appointment: Appointment = {
+      name: payload.name,
+      phone: payload.phone,
+      email: payload.email,
+      appointment_date: form.appointment_date,
+      appointment_time: form.appointment_time,
+      service: form.service,
+      message: payload.message,
+    };
 
     const { error } = await supabase.from('appointments').insert(appointment);
 

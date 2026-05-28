@@ -48,6 +48,7 @@ export const translations = {
     gallery: {
       sectionLabel: 'The Work',
       sectionTitle: 'Gallery',
+      clickHint: 'Click any photo · Use arrows to browse',
     },
     about: {
       sectionLabel: 'Our Story',
@@ -92,6 +93,7 @@ export const translations = {
       successMsg: "Thanks for reaching out. We'll confirm your appointment via WhatsApp or Instagram shortly.",
       bookAnother: 'BOOK ANOTHER',
       errorMsg: 'Something went wrong. Please try again or contact us directly.',
+      slotTakenMsg: 'This time slot is already booked. Please choose a different time.',
     },
     footer: {
       tagline: 'Fresh Cuts · Premium Grooming\nProfessional Experience',
@@ -151,6 +153,7 @@ export const translations = {
     gallery: {
       sectionLabel: 'O Trabalho',
       sectionTitle: 'Galeria',
+      clickHint: 'Clique em qualquer foto · Use as setas para navegar',
     },
     about: {
       sectionLabel: 'A Nossa História',
@@ -195,6 +198,7 @@ export const translations = {
       successMsg: 'Obrigado pelo contacto. Confirmaremos a sua consulta por WhatsApp ou Instagram em breve.',
       bookAnother: 'NOVA RESERVA',
       errorMsg: 'Algo correu mal. Por favor tente novamente ou contacte-nos diretamente.',
+      slotTakenMsg: 'Este horário já está reservado. Por favor escolha outro horário.',
     },
     footer: {
       tagline: 'Cortes Frescos · Grooming Premium\nExperiência Profissional',

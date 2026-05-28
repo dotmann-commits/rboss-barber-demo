@@ -23,3 +23,10 @@ dist-ssr
 .env
 
 .vercel
+
+# Claude Code
+.claude/
+
+# macOS junk
+*.textClipping
+supabase/
