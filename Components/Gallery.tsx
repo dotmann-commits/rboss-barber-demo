@@ -4,16 +4,19 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
 const galleryImages = [
-  { src: '/gallery/newGallery.png',                           alt: 'RBOSS signature style' },
-  { src: '/gallery/full-haircut.png',                         alt: 'Full haircut result' },
+  // Frame 1 — top: ← + → / bottom: → + ←
   { src: '/F6C88B3B-89E9-45DC-871E-61E61B876814.png',         alt: 'Precision grooming' },
+  { src: '/gallery/full-haircut.png',                         alt: 'Full haircut result' },
+  { src: '/gallery/newGallery.png',                           alt: 'RBOSS signature style' },
   { src: '/gallery/rboss-action-2.png',                       alt: 'RBOSS signature cut' },
+  // Frame 2
   { src: '/gallery/rb-action-1.png',                          alt: 'RBOSS in action' },
+  { src: '/gallery/rboss-action-1.png',                       alt: 'Sharp fade' },
   { src: '/services/05_Coloring_Service.png',                 alt: 'Professional hair coloring' },
   { src: '/0037528D-212E-43E1-ABA5-C22A2E6945AF.png',         alt: 'Fresh cut' },
-  { src: '/B6CADB6B-54E8-4700-888D-B8B0B1279020.jpeg',        alt: 'Sharp style' },
-  { src: '/gallery/rboss-action-1.png',                       alt: 'RBOSS in action' },
+  // Frame 3
   { src: '/gallery/barber-action-shot6.png',                  alt: 'Clean cut finish' },
+  { src: '/B6CADB6B-54E8-4700-888D-B8B0B1279020.jpeg',        alt: 'Sharp style' },
   { src: '/gallery/beard-trim.png',                           alt: 'Beard trim and shaping' },
   { src: '/gallery/kids-haircut.png',                         alt: 'Kids haircut' },
 ];
