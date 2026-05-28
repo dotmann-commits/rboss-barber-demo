@@ -56,6 +56,13 @@ export default function Booking({ selectedService }: BookingProps) {
 
   const today = new Date().toISOString().split('T')[0];
 
+  const isPastSlot = (slot: string): boolean => {
+    if (form.appointment_date !== today) return false;
+    const [h, m] = slot.split(':').map(Number);
+    const now = new Date();
+    return h * 60 + m <= now.getHours() * 60 + now.getMinutes();
+  };
+
   // Pre-fill service when selected from Services section
   useEffect(() => {
     if (selectedService) {
@@ -284,15 +291,17 @@ export default function Booking({ selectedService }: BookingProps) {
                       <div className="grid grid-cols-3 gap-1.5 pt-1">
                         {timeSlots.map((slot) => {
                           const booked = bookedSlots.includes(slot);
+                          const past = isPastSlot(slot);
+                          const unavailable = booked || past;
                           const selected = form.appointment_time === slot;
                           return (
                             <button
                               key={slot}
                               type="button"
-                              disabled={booked}
-                              onClick={() => !booked && setForm((prev) => ({ ...prev, appointment_time: slot }))}
+                              disabled={unavailable}
+                              onClick={() => !unavailable && setForm((prev) => ({ ...prev, appointment_time: slot }))}
                               className={`py-2 text-xs font-medium tracking-wide border transition-all duration-150 ${
-                                booked
+                                unavailable
                                   ? 'bg-transparent border-brand-border/20 text-brand-gray/25 cursor-not-allowed line-through'
                                   : selected
                                   ? 'bg-brand-green border-brand-green text-white'
