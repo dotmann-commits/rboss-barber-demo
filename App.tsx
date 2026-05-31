@@ -1,35 +1,51 @@
-import { useState } from 'react';
-import { LanguageProvider } from './context/LanguageContext';
+import { NavigationProvider, useNavigation } from './context/NavigationContext';
 import Header from './Components/Header';
-import Hero from './Components/Hero';
-import ContactStrip from './Components/ContactStrip';
-import Services from './Components/Services';
-import Gallery from './Components/Gallery';
-import About from './Components/About';
-import Booking from './Components/Booking';
 import Footer from './Components/Footer';
+import AIChat from './Components/AIChat';
 
-function App() {
-  const [selectedService, setSelectedService] = useState('');
+import Home from './pages/Home';
+import Flights from './pages/Flights';
+import Admissions from './pages/Admissions';
+import Visa from './pages/Visa';
+import ProofOfFunds from './pages/ProofOfFunds';
+import Tours from './pages/Tours';
+import About from './pages/About';
+import Portal from './pages/Portal';
+import Contact from './pages/Contact';
 
-  const handleSelectService = (serviceKey: string) => {
-    setSelectedService(serviceKey);
+function AppContent() {
+  const { currentPage } = useNavigation();
+
+  const PAGE_MAP = {
+    home: Home,
+    flights: Flights,
+    admissions: Admissions,
+    visa: Visa,
+    'proof-of-funds': ProofOfFunds,
+    tours: Tours,
+    about: About,
+    portal: Portal,
+    contact: Contact,
   };
 
+  const PageComponent = PAGE_MAP[currentPage] ?? Home;
+
   return (
-    <LanguageProvider>
-      <div className="min-h-screen bg-brand-black">
-        <Header />
-        <Hero />
-        <ContactStrip />
-        <Gallery />
-        <Services onSelectService={handleSelectService} />
-        <Booking selectedService={selectedService} />
-        <About />
-        <Footer />
-      </div>
-    </LanguageProvider>
+    <div className="min-h-screen bg-uptreek-navy">
+      <Header />
+      <main>
+        <PageComponent />
+      </main>
+      <Footer />
+      <AIChat />
+    </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <NavigationProvider>
+      <AppContent />
+    </NavigationProvider>
+  );
+}

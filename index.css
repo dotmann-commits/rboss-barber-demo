@@ -1,45 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: #0a0a0a;
-    color: #f5f5f5;
     font-family: 'Inter', system-ui, sans-serif;
+    background-color: #0B1426;
+    color: #F8FAFC;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  * {
-    box-sizing: border-box;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-brand-green hover:bg-brand-green-light text-white font-medium text-sm px-6 py-3 transition-all duration-200 tracking-wide;
+    @apply bg-uptreek-blue hover:bg-uptreek-blue-light text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 inline-flex items-center gap-2 shadow-blue;
+  }
+
+  .btn-gold {
+    @apply bg-uptreek-gold hover:bg-uptreek-gold-light text-uptreek-navy font-bold px-6 py-3 rounded-xl transition-all duration-200 inline-flex items-center gap-2 shadow-gold;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white/70 text-white font-medium text-sm px-6 py-3 transition-all duration-200 tracking-wide hover:bg-white/5;
+    @apply border-2 border-uptreek-gold text-uptreek-gold hover:bg-uptreek-gold hover:text-uptreek-navy font-semibold px-6 py-3 rounded-xl transition-all duration-200 inline-flex items-center gap-2;
   }
 
-  .section-label {
-    @apply text-brand-green text-xs font-semibold tracking-[0.2em] uppercase;
+  .btn-ghost {
+    @apply border border-white/20 text-white hover:bg-white/10 font-medium px-6 py-3 rounded-xl transition-all duration-200 inline-flex items-center gap-2;
   }
 
-  .section-title {
-    @apply font-display text-3xl md:text-4xl font-700 text-brand-white leading-tight;
+  .card-dark {
+    @apply bg-uptreek-navy-light border border-white/10 rounded-2xl p-6 shadow-card;
+  }
+
+  .card-glass {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6;
+  }
+
+  .card-white {
+    @apply bg-white border border-uptreek-gray-light rounded-2xl p-6 shadow-md;
+  }
+
+  .section-navy {
+    @apply bg-uptreek-navy py-20 px-4;
+  }
+
+  .section-dark {
+    @apply bg-uptreek-dark py-20 px-4;
+  }
+
+  .section-white {
+    @apply bg-white py-20 px-4;
+  }
+
+  .section-off-white {
+    @apply bg-uptreek-off-white py-20 px-4;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .gold-text {
+    @apply text-uptreek-gold;
+  }
+
+  .form-input {
+    @apply w-full bg-uptreek-navy border border-white/20 text-white placeholder-uptreek-gray rounded-xl px-4 py-3 focus:outline-none focus:border-uptreek-gold focus:ring-1 focus:ring-uptreek-gold transition-colors;
+  }
+
+  .form-input-light {
+    @apply w-full bg-white border border-uptreek-gray-light text-uptreek-navy placeholder-uptreek-gray rounded-xl px-4 py-3 focus:outline-none focus:border-uptreek-blue focus:ring-1 focus:ring-uptreek-blue transition-colors;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-uptreek-gray-mid mb-1.5;
+  }
+
+  .form-label-light {
+    @apply block text-sm font-medium text-uptreek-gray-dark mb-1.5;
+  }
+
+  .badge-gold {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium bg-uptreek-gold/20 text-uptreek-gold-light border border-uptreek-gold/30;
+  }
+
+  .badge-blue {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium bg-uptreek-blue/20 text-uptreek-blue-glow border border-uptreek-blue/30;
+  }
+
+  .badge-success {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium bg-uptreek-success/20 text-uptreek-success border border-uptreek-success/30;
+  }
+
+  .divider-gold {
+    @apply w-16 h-1 bg-uptreek-gold rounded-full mx-auto;
+  }
+
+  .divider-gold-left {
+    @apply w-16 h-1 bg-uptreek-gold rounded-full;
+  }
+
+  .nav-link {
+    @apply text-white/80 hover:text-uptreek-gold font-medium transition-colors duration-200 text-sm;
+  }
+
+  .stat-number {
+    @apply text-3xl md:text-4xl font-bold text-uptreek-gold;
+  }
+
+  .stat-label {
+    @apply text-sm text-uptreek-gray-mid mt-1;
   }
 }
 
 @layer utilities {
-  .font-700 {
-    font-weight: 700;
+  .text-balance {
+    text-wrap: balance;
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #132040;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #C9A84C;
+    border-radius: 2px;
+  }
+}
+
+.dot-pattern {
+  background-image: radial-gradient(circle, rgba(201,168,76,0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.animated-gradient-text {
+  background: linear-gradient(90deg, #C9A84C, #E5C96B, #60A5FA, #C9A84C);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(11, 20, 38, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+select.form-input option,
+select.form-input-light option {
+  background-color: #0B1426;
+  color: #F8FAFC;
+}
+
+.chat-slide-up {
+  animation: chatSlideUp 0.3s ease-out;
+}
+
+@keyframes chatSlideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(6,13,27,0.5);
+}
+
+.gold-border-hover {
+  border: 1px solid rgba(201,168,76,0);
+  transition: border-color 0.2s ease;
+}
+
+.gold-border-hover:hover {
+  border-color: rgba(201,168,76,0.4);
 }
